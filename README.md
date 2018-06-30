@@ -1,3 +1,9 @@
+## DueMe
+
+DueMe is a productivity app that let you complete tasks in the most efficient way possible.
+You can add activities and tasks to the app. By specifying when the due date is and how long the task will take to complete 
+DueMe will tell which task you should be working on at the current moment. By adding your progresses to the task the app will automatically tell you what to do and what you should be working on next.
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
