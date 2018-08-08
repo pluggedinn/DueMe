@@ -1,17 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import {  , Text, View, Button } from 'react-native';
 
 export default class App extends React.Component {
-  getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
   constructor(props) {
     super(props)
+    this.state = {
+    }
   }
   render() {
     return (
@@ -19,7 +13,6 @@ export default class App extends React.Component {
         <View style={styles.item}></View>
         <View style={styles.item}></View>
         <View style={styles.item}></View>
-        <Button title="PRESS ME!"/>
       </View>
     );
   }
@@ -33,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   item: {
-    backgroundColor: getRandomColor(),
+    backgroundColor: '#fff',
     width: 20,
     height: 20,
   }
