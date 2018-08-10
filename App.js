@@ -1,33 +1,25 @@
-import React from 'react';
-import {  , Text, View, Button } from 'react-native';
+import React from 'react'
+import { createStackNavigator  } from 'react-navigation'
+import Home from './screens/Home'
+import Details from './screens/Details'
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
+const RootStack = createStackNavigator(
+  {
+    HomeScreen: Home,
+    DetailsScreen: Details,
+  },
+  {
+    initialRouteName: 'HomeScreen',
+    navigationOptions: {
+      headerTitleStyle: {
+        fontWeight: 'normal'
+      }
     }
   }
+);
+
+export default class App extends React.Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.item}></View>
-        <View style={styles.item}></View>
-        <View style={styles.item}></View>
-      </View>
-    );
+    return <RootStack />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  item: {
-    backgroundColor: '#fff',
-    width: 20,
-    height: 20,
-  }
-});
