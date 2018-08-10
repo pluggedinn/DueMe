@@ -1,22 +1,30 @@
 import React, { Component } from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, StyleSheet } from 'react-native'
 
 export default class Home extends Component {
   static navigationOptions = {
-    title: 'Home',
-    headerRight: (
-      <Button title="Info" />
-    )
+    title: 'Tasks',
   }
 
   render() {
     return (
-      <View style={{ flex:1, alignItems:'center', justifyContent:'center' }}>
-        <Text> This is the home</Text>
-        <Button onPress={() => this.props.navigation.navigate('DetailsScreen', {
-          title: 'Dettagli'
-        })} title="PRESSME"/>
+      <View style={{ flex:1, flexDirection:'column' }}>
+        <View style={ styles.filterRow }>
+          <Text style={{ flexGrow:1, alignSelf:'center' }}>ACTIVE</Text>
+          <Button title='BTN'/>
+          <Text style={{ alignSelf:'center' }}>FILTER</Text>
+        </View>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  filterRow: {
+    flex: 0,
+    flexDirection: 'row',
+    marginTop: 8,
+    marginLeft: 18,
+    marginRight: 18
+  }
+})
