@@ -11,9 +11,11 @@ export const Filters = {
   SHOW_EXPIRED: 'SHOW_EXPIRED'
 }
 
+let nextTaskId = 0
 export function addTask (data) {
   return {
     type: ADD_TASK,
+    id: nextTaskId++,
     title: data.title,
     description: data.description,
     due: data.due,
@@ -22,9 +24,10 @@ export function addTask (data) {
   }
 }
 
-export function editTask (data) {
+export function editTask (taskid, data) {
   return {
     type: EDIT_TASK_DETAILS,
+    id: taskid,
     title: data.title,
     description: data.description,
     due: data.due,
@@ -33,8 +36,31 @@ export function editTask (data) {
   }
 }
 
-export function addHoursTask (data) {
+export function addHoursTask (taskid, hoursup) {
   return {
-    type: ADD_TASK_HOURS
+    type: ADD_TASK_HOURS,
+    taskid,
+    hoursup
+  }
+}
+
+export function completeTask (taskid) {
+  return {
+    type: COMPLETE_TASK,
+    taskid
+  }
+}
+
+export function deleteTask (taskid) {
+  return {
+    type: DELETE_TASK,
+    taskid
+  }
+}
+
+export function setFilter (filter) {
+  return {
+    type: SET_FILTER,
+    filter
   }
 }
