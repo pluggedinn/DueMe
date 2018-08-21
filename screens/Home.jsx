@@ -9,13 +9,14 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View style={{ flex:1, flexDirection:'column' }}>
-        <View style={ styles.filterRow }>
-          <Text style={{ flexGrow:1, alignSelf:'center' }}>ACTIVE</Text>
-            <TouchableOpacity style={{marginRight:4}} onPress={()=> { console.log('hi') }
-            }>
+      <View style = {{ flex:1, flexDirection:'column' }}>
+        <View style = { styles.filterRow }>
+          <Text style = {{ flexGrow:1, alignSelf:'center' }}>ACTIVE</Text>
+            <TouchableOpacity
+              style = {{marginRight:4}}
+              onPress = { ()=> { console.log('hi') }}>
               <SvgUri width="25" height="25" source={require('.././assets/icons/filter.svg')} />
-          </TouchableOpacity>
+            </TouchableOpacity>
           <Text style={{ alignSelf:'center' }}>FILTER</Text>
         </View>
       </View>
