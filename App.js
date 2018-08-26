@@ -1,5 +1,8 @@
-import React from 'react'
+  import React from 'react'
 import { createStackNavigator  } from 'react-navigation'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import rootReducer from './store/reducers'
 import Home from './screens/Home'
 import Details from './screens/Details'
 
@@ -16,10 +19,16 @@ const RootStack = createStackNavigator(
       }
     }
   }
-);
+)
+
+const store = createStore(rootReducer)
 
 export default class App extends React.Component {
   render() {
-    return <RootStack />;
+    return (
+      <Provider store= { store }>
+        <RootStack />
+      </Provider>
+    )
   }
 }

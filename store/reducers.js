@@ -12,7 +12,7 @@ const initialState = {
   tasks: []
 }
 
-function duemeApp(state = initialState, action) {
+function rootReducer(state = initialState, action) {
   switch (action.type) {
     case SET_FILTER:
       return Object.assign({}, ...state, { filter: action.filter })
@@ -38,3 +38,5 @@ function duemeApp(state = initialState, action) {
   }
   return state
 }
+
+export default rootReducer
