@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, StyleSheet, TouchableOpacity, Picker } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Picker } from 'react-native'
 import { Filters } from '.././store/actions'
 import SvgUri from 'react-native-svg-uri'
 
@@ -12,6 +12,7 @@ class Home extends Component {
   constructor() {
     super()
     console.log(Filters)
+    console.log("helloooo")
   }
 
   render() {
@@ -23,18 +24,15 @@ class Home extends Component {
     return (
       <View style = {{ flex:1, flexDirection:'column' }}>
         <View style = { styles.filterRow }>
-          <Text style = {{ flexGrow:1, alignSelf:'center' }}>{ this.props.filter }</Text>
-            <TouchableOpacity
-              style = {{marginRight:4}}
-              onPress = { ()=> { console.log('hi') }}>
-              <SvgUri width="25" height="25" source={require('.././assets/icons/filter.svg')} />
-            </TouchableOpacity>
-            <Picker
-              selectedValue = { this.props.filter }
-              style = {{ height: 50, width: 100 }} >
-              { pickerItems }
-            </Picker>
-          <Text style={{ alignSelf:'center' }}>FILTER</Text>
+          <View
+            style = { styles.marginRight, styles.border } >
+            <SvgUri width="25" height="25" source={require('.././assets/icons/filter.svg')} />
+          </View>
+          <Picker
+            selectedValue = { this.props.currentFilter }
+            style = {[{ height: 25, width: 130 }, styles.border]} >
+            { pickerItems }
+          </Picker>
         </View>
       </View>
     )
@@ -48,11 +46,26 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginLeft: 18,
     marginRight: 18
+  },
+  border: {
+    borderWidth: 1,
+    borderColor: 'black'
+  },
+  marginRight: {
+    marginRight: 4
   }
 })
 
 const mapStateToProps = (state) => {
-  return { filter: state.filter }
+  return { currentFilter: state.filter }
 }
 
-export default connect(mapStateToProps)(Home)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilter: filter => {
+      dispatch(setFilter(filter))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
