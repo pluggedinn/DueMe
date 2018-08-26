@@ -6,9 +6,9 @@ export const DELETE_TASK = 'DELETE_TASK'
 export const SET_FILTER = 'SET_FILTER'
 
 export const Filters = {
-  SHOW_ACTIVE: 'SHOW_ACTIVE',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_EXPIRED: 'SHOW_EXPIRED'
+  SHOW_ACTIVE: 'Active',
+  SHOW_COMPLETED: 'Completed',
+  SHOW_EXPIRED: 'Expired'
 }
 
 let nextTaskId = 0

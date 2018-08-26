@@ -1,9 +1,9 @@
 import _ from 'underscore'
 import { ADD_TASK,
-        EDIT_TASK_DETAILS,
-        ADD_TASK_HOURS,
-        COMPLETE_TASK,
-        DELETE_TASK,
+//        EDIT_TASK_DETAILS,
+//        ADD_TASK_HOURS,
+//        COMPLETE_TASK,
+//        DELETE_TASK,
         EDIT_TASK,
         SET_FILTER,
         Filters } from './actions'

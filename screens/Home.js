@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Picker } from 'react-native'
+import { Filters } from '.././store/actions'
 import SvgUri from 'react-native-svg-uri'
 
 class Home extends Component {
@@ -8,7 +9,17 @@ class Home extends Component {
     title: 'Tasks',
   }
 
+  constructor() {
+    super()
+    console.log(Filters)
+  }
+
   render() {
+    const pickerItems = []
+    for (var item in Filters) {
+      pickerItems.push(<Picker.Item label = { Filters[item] }  value = { Filters[item] } ></Picker.Item>)
+    }
+
     return (
       <View style = {{ flex:1, flexDirection:'column' }}>
         <View style = { styles.filterRow }>
@@ -18,6 +29,11 @@ class Home extends Component {
               onPress = { ()=> { console.log('hi') }}>
               <SvgUri width="25" height="25" source={require('.././assets/icons/filter.svg')} />
             </TouchableOpacity>
+            <Picker
+              selectedValue = { this.props.filter }
+              style = {{ height: 50, width: 100 }} >
+              { pickerItems }
+            </Picker>
           <Text style={{ alignSelf:'center' }}>FILTER</Text>
         </View>
       </View>
