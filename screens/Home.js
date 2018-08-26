@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
 
-export default class Home extends Component {
+class Home extends Component {
   static navigationOptions = {
     title: 'Tasks',
   }
@@ -11,7 +12,7 @@ export default class Home extends Component {
     return (
       <View style = {{ flex:1, flexDirection:'column' }}>
         <View style = { styles.filterRow }>
-          <Text style = {{ flexGrow:1, alignSelf:'center' }}>ACTIVE</Text>
+          <Text style = {{ flexGrow:1, alignSelf:'center' }}>{ this.props.filter }</Text>
             <TouchableOpacity
               style = {{marginRight:4}}
               onPress = { ()=> { console.log('hi') }}>
@@ -33,3 +34,9 @@ const styles = StyleSheet.create({
     marginRight: 18
   }
 })
+
+const mapStateToProps = (state) => {
+  return { filter: state.filter }
+}
+
+export default connect(mapStateToProps)(Home)

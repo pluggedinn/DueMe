@@ -14,5 +14,6 @@
   "rules": {
     // overrides
     "no-console": "off"
+    "react/prop-types": 0
   }
 }
