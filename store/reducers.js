@@ -1,9 +1,9 @@
-//import _ from underscore
+import _ from 'underscore'
 import { ADD_TASK,
-//        EDIT_TASK_DETAILS,
-//        ADD_TASK_HOURS,
-//        COMPLETE_TASK,
-//        DELETE_TASK,
+        EDIT_TASK_DETAILS,
+        ADD_TASK_HOURS,
+        COMPLETE_TASK,
+        DELETE_TASK,
         EDIT_TASK,
         SET_FILTER,
         Filters } from './actions'
@@ -20,15 +20,15 @@ function rootReducer(state = initialState, action) {
     case ADD_TASK:
       return Object.assign({}, ...state, {
         tasks: [
-          ...state.tasks
-//          _.omit(action, 'type')
+          ...state.tasks,
+          _.omit(action, 'type')
           ]
       })
     case EDIT_TASK:
       return Object.assign({}, ...state, { tasks:
         state.tasks.map(task => {
           if (task.id === action.id) {
-//            return _.omit(action, 'type')
+            return _.omit(action, 'type')
           }
           return task
         })
