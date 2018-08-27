@@ -12,10 +12,11 @@ class FilterBar extends Component {
     for (var item in Filters) {
       pickerItems.push(<Picker.Item key = { index++ } label = { Filters[item] }  value = { Filters[item] } ></Picker.Item>)
     }
+    console.log(this.props.wholeState)
 
     return (
       <View style = {{ flex:1, flexDirection:'column' }}>
-        <View style = { styles.filterRow }>
+        <View style = { styles.row }>
           <View
             style = { styles.marginRight } >
             <SvgUri width="25" height="25" source={require('.././assets/icons/filter.svg')} />
@@ -23,7 +24,7 @@ class FilterBar extends Component {
           <Picker
             selectedValue = { this.props.currentFilter }
             onValueChange = {(item) => this.props.setFilter(item)}
-            style = {[{ height: 25, width: 160 }, styles.border]} >
+            style = {{ height: 25, width: 160 }} >
             { pickerItems }
           </Picker>
         </View>
@@ -33,7 +34,7 @@ class FilterBar extends Component {
 }
 
 const styles = StyleSheet.create({
-  filterRow: {
+  row: {
     flex: 0,
     flexDirection: 'row',
     marginTop: 8,
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => {
-  return { currentFilter: state.filter }
+  return { currentFilter: state.filter, wholeState: state }
 }
 
 const mapDispatchToProps = (dispatch) => {
