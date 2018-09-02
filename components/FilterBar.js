@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { View, StyleSheet, Picker } from 'react-native'
 import { Filters, setFilter } from '.././store/actions'
 import SvgUri from 'react-native-svg-uri'
 
-class FilterBar extends Component {
+class FilterBar extends React.Component {
 
   render() {
     const pickerItems = []
