@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { View, StyleSheet, Picker } from 'react-native'
-import { Filters, setFilter } from '.././store/actions'
 import SvgUri from 'react-native-svg-uri'
+
+import { Filters, setFilter } from '.././store/actions'
 
 class FilterBar extends React.Component {
 

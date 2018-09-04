@@ -11,6 +11,12 @@ export const Filters = {
   SHOW_EXPIRED: 'Expired'
 }
 
+export const Priorities = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH'
+}
+
 let nextTaskId = 0
 export function addTask (data) {
   return {
@@ -20,7 +26,7 @@ export function addTask (data) {
     description: data.description,
     due: data.due,
     priority: data.priority,
-    hours: data.hours
+    estimate: data.hours
   }
 }
 
@@ -32,7 +38,7 @@ export function editTask (taskid, data) {
     description: data.description,
     due: data.due,
     priority: data.priority,
-    hours: data.hours
+    estimate: data.hours
   }
 }
 
