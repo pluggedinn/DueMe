@@ -1,5 +1,6 @@
 import React from 'react'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, StyleSheet, View } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import t from 'tcomb-form-native'
 import SvgUri from 'react-native-svg-uri'
 
@@ -32,6 +33,7 @@ export default class NewTask extends React.Component {
     title: 'New task',
     headerLeft: (
       <TouchableOpacity
+        style = {{ marginLeft: 16 }}
         onPress = { () => {
           navigation.goBack()
         }}>
@@ -45,12 +47,24 @@ export default class NewTask extends React.Component {
 
   constructor() {
     super()
-    console.log("New task")
+    console.log("New taskkk")
   }
 
   render() {
     return (
-      <Form type = { Task } options = { options }/>
+      <KeyboardAwareScrollView>
+        <View
+          style = { styles.container } >
+          <Form type = { Task } options = { options }/>
+        </View>
+      </KeyboardAwareScrollView>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    padding: 20
+  }
+})
