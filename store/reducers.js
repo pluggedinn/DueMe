@@ -16,16 +16,16 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case SET_FILTER:
-      return Object.assign({}, ...state, { filter: action.filter })
+      return Object.assign({}, state, { filter: action.filter })
     case ADD_TASK:
-      return Object.assign({}, ...state, {
+      return Object.assign({}, state, {
         tasks: [
           ...state.tasks,
           _.omit(action, 'type')
           ]
       })
     case EDIT_TASK:
-      return Object.assign({}, ...state, { tasks:
+      return Object.assign({}, state, { tasks:
         state.tasks.map(task => {
           if (task.id === action.id) {
             return _.omit(action, 'type')

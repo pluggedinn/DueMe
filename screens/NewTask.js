@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { TouchableOpacity, StyleSheet, View, Text, InteractionManager } from 'react-native'
+import { TouchableOpacity, StyleSheet, View, Text } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import t from 'tcomb-form-native'
 import SvgUri from 'react-native-svg-uri'
@@ -9,22 +9,21 @@ import { Priorities, addTask } from '../store/actions'
 
 const Form = t.form.Form
 
+/* Forms */
 var options = {
   fields: {
-    dueDate: {
+    due: {
       mode: 'date'
     }
   }
 };
-
 var Priority = t.enums({
   ...Priorities
 })
-
 const Task = t.struct({
   title: t.String,
   description: t.maybe(t.String),
-  dueDate: t.Date,
+  due: t.Date,
   priority: Priority,
   estimate: t.Number
 })
@@ -35,9 +34,7 @@ class NewTask extends React.Component {
     headerLeft: (
       <TouchableOpacity
         style = {{ marginLeft: 16 }}
-        onPress = { () => {
-          navigation.goBack()
-        }}>
+        onPress = {() => navigation.goBack() }>
         <SvgUri
           width = '25'
           height = '25'
@@ -47,7 +44,7 @@ class NewTask extends React.Component {
     headerRight: (
       <TouchableOpacity
         style = {{ marginRight: 21 }}
-        onPress = { navigation.getParam('handleSave') }>
+        onPress = {() => navigation.state.params.handleSave() }>
         <Text>
           SAVE
         </Text>
@@ -57,16 +54,18 @@ class NewTask extends React.Component {
 
   constructor() {
     super()
+    console.log("New taska")
     this.formRef = React.createRef()
-    console.log("New taskea")
-  }
-
-  componentDidMount() {
-    this.props.navigation.setParams({ handleSave: this.saveForm() })
   }
 
   saveForm() {
-    console.log('hi')
+    let task = this.formRef.current.getValue()
+    console.log(task)
+    this.props.addTask(task)
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams({ handleSave: this.saveForm.bind(this) })
   }
 
   render() {
@@ -83,13 +82,15 @@ class NewTask extends React.Component {
   }
 }
 
+/* Style */
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     padding: 20
   }
 })
-
+//
+/* Redux methods */
 const mapStateToProps = (state) => {
   return { wholeState: state }
 }

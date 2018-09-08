@@ -26,7 +26,7 @@ export function addTask (data) {
     description: data.description,
     due: data.due,
     priority: data.priority,
-    estimate: data.hours
+    estimate: data.estimate
   }
 }
 
