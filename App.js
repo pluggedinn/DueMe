@@ -5,13 +5,13 @@ import { createStore } from 'redux'
 import rootReducer from './store/reducers'
 import Home from './screens/Home'
 import Details from './screens/Details'
-import NewTask from './screens/NewTask'
+import EditNewTask from './screens/EditNewTask'
 
 const RootStack = createStackNavigator(
   {
     HomeScreen: Home,
     DetailsScreen: Details,
-    NewTaskScreen: NewTask
+    EditNewTaskScreen: EditNewTask
   },
   {
     initialRouteName: 'HomeScreen',

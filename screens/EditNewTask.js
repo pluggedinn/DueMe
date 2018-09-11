@@ -28,9 +28,9 @@ const Task = t.struct({
   estimate: t.Number
 })
 
-class NewTask extends React.Component {
+class EditNewTask extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'New task',
+    title: navigation.getParam('title', 'New task'),
     headerLeft: (
       <TouchableOpacity
         style = {{ marginLeft: 16 }}
@@ -60,8 +60,7 @@ class NewTask extends React.Component {
 
   saveForm() {
     let task = this.formRef.current.getValue()
-    console.log(task)
-    this.props.addTask(task)
+    this.props.navigation.getParam('taskData') ? this.props.editTask(task) : this.props.addTask(task)
   }
 
   componentDidMount() {
@@ -69,13 +68,16 @@ class NewTask extends React.Component {
   }
 
   render() {
+    const taskData = this.props.navigation.getParam('taskData', null)
+
     return (
       <KeyboardAwareScrollView>
         <View style = { styles.container } >
           <Form
             type = { Task }
             options = { options }
-            ref = { this.formRef } />
+            ref = { this.formRef }
+            value = { taskData } />
         </View>
       </KeyboardAwareScrollView>
     )
@@ -99,8 +101,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addTask: task => {
       dispatch(addTask(task))
+    },
+    editTask: task => {
+      dispatch(editTask(task))
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewTask)
+export default connect(mapStateToProps, mapDispatchToProps)(EditNewTask)

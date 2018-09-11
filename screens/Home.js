@@ -10,7 +10,7 @@ export default class Home extends Component {
       <TouchableOpacity
         style = {{ marginRight: 16 }}
         onPress = { () => {
-          navigation.push('NewTaskScreen')
+          navigation.push('EditNewTaskScreen')
         }}>
         <SvgUri
           width = '25'
