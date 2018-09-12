@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import FilterBar from '../components/FilterBar'
+import FlatListTasks from '../components/FlatListTasks'
 import SvgUri from 'react-native-svg-uri'
 
 export default class Home extends Component {
@@ -29,6 +30,7 @@ export default class Home extends Component {
     return (
       <View>
         <FilterBar></FilterBar>
+        <FlatListTasks></FlatListTasks>
       </View>
     )
   }
