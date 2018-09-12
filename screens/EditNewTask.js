@@ -5,7 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import t from 'tcomb-form-native'
 import SvgUri from 'react-native-svg-uri'
 
-import { Priorities, addTask } from '../store/actions'
+import { Priorities, addTask, editTask } from '../store/actions'
 
 const Form = t.form.Form
 

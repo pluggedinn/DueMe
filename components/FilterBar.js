@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, StyleSheet, Picker } from 'react-native'
+import { View, Picker } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
+import styles from '../assets/styles/core'
 
 import { Filters, setFilter } from '.././store/actions'
 
@@ -16,7 +17,6 @@ class FilterBar extends React.Component {
     console.log(this.props.wholeState)
 
     return (
-      <View style = {{ flex:1, flexDirection:'column' }}>
         <View style = { styles.row }>
           <View
             style = { styles.marginRight } >
@@ -29,27 +29,9 @@ class FilterBar extends React.Component {
             { pickerItems }
           </Picker>
         </View>
-      </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  row: {
-    flex: 0,
-    flexDirection: 'row',
-    marginTop: 8,
-    marginLeft: 18,
-    marginRight: 18
-  },
-  border: {
-    borderWidth: 1,
-    borderColor: 'black'
-  },
-  marginRight: {
-    marginRight: 4
-  }
-})
 
 const mapStateToProps = (state) => {
   return { currentFilter: state.filter, wholeState: state }

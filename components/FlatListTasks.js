@@ -1,6 +1,7 @@
 import React from "react"
 import { View, Text, FlatList } from "react-native"
 import { connect } from "react-redux"
+import styles from '../assets/styles/core'
 
 class FlatListTasks extends React.Component {
   constructor(props) {
@@ -10,13 +11,13 @@ class FlatListTasks extends React.Component {
 
   render() {
     return (
-      <View style={{ flex:1, flexDirection:'column' }}>
+      <View style = { styles.row }>
         <Text>Tasks:</Text>
         <FlatList
           data = { this.props.tasks }
           keyExtractor = { item => 'task-$(item.id)' }
           renderItem = {({ item }) => (
-            <View>
+            <View style = { styles.row }>
               <Text>{ item.title }</Text>
               <Text>{ item.expected }</Text>
             </View>

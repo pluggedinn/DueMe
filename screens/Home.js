@@ -3,6 +3,7 @@ import { View, TouchableOpacity } from 'react-native'
 import FilterBar from '../components/FilterBar'
 import FlatListTasks from '../components/FlatListTasks'
 import SvgUri from 'react-native-svg-uri'
+import styles from '../assets/styles/core'
 
 export default class Home extends Component {
   static navigationOptions =  ({ navigation }) => ({
@@ -28,7 +29,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View>
+      <View style = { styles.columnContainer }>
         <FilterBar></FilterBar>
         <FlatListTasks></FlatListTasks>
       </View>
