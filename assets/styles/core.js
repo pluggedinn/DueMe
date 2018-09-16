@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-const styles = StyleSheet.create({
+const core = StyleSheet.create({
   columnContainer: {
     flex: 1,
     flexDirection: 'column'
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default styles
+export default core

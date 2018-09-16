@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { View, Picker } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
-import styles from '../assets/styles/core'
+import core from '../assets/styles/core'
 
 import { Filters, setFilter } from '.././store/actions'
 
@@ -17,9 +17,9 @@ class FilterBar extends React.Component {
     console.log(this.props.wholeState)
 
     return (
-        <View style = { styles.row }>
+        <View style = { core.row }>
           <View
-            style = { styles.marginRight } >
+            style = { core.marginRight } >
             <SvgUri width="25" height="25" source={require('.././assets/icons/filter.svg')} />
           </View>
           <Picker

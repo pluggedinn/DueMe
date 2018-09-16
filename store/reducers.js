@@ -10,7 +10,22 @@ import { ADD_TASK,
 
 const initialState = {
   filter: Filters.SHOW_ACTIVE,
-  tasks: []
+  tasks: [{
+    id: 0,
+    title: 'Chiamare DMV',
+    due: '2018-09-20T06:00:00.000Z',
+    estimate: 45,
+    priority: 'HIGH',
+    description: null
+  },
+  {
+    id: 1,
+    title: 'Scrivere a Jensen',
+    due: '2018-09-20T06:00:00.000Z',
+    estimate: 0.5,
+    priority: 'MEDIUM',
+    description: null
+  }]
 }
 
 function rootReducer(state = initialState, action) {
