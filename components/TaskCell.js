@@ -1,5 +1,6 @@
 import React from "react"
-import { View, Text, StyleSheet, Button } from "react-native"
+import { withNavigation } from 'react-navigation'
+import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native"
 import core from '../assets/styles/core'
 
 // props: expand: expands item showing buttons | boolean
@@ -20,16 +21,19 @@ class TaskCell extends React.Component {
   render() {
     return (
       <View style = { [core.border, style.card] }>
-        <View style = { style.cardRow }>
-          <Text style = { core.border }>{ this.props.item.estimate }</Text>
-          <Text style = { core.border }>{ this.props.item.title }</Text>
-          <Button title = "A" onPress = {() => { this.setState({expand : !this.state.expand}) } }></Button>
-        </View>
-        { this.state.expand && <View style = { style.cardRow }>
-          <Button title = "DONE"></Button>
-          <Button title = "ADVANCE+"></Button>
-          <Text style = {[core.border,{ marginLeft: 'auto', marginTop: 'auto' }]}>3h left</Text>
-        </View> }
+        <TouchableOpacity
+          onPress = {() => this.props.navigation.push('DetailsScreen', { taskData: this.props.item })}>
+          <View style = { style.cardRow }>
+            <Text style = { core.border }>{ this.props.item.estimate }</Text>
+            <Text style = { core.border }>{ this.props.item.title }</Text>
+            <Button title = "A" onPress = {() => { this.setState({expand : !this.state.expand}) } }></Button>
+          </View>
+          { this.state.expand && <View style = { style.cardRow }>
+            <Button title = "DONE"></Button>
+            <Button title = "ADVANCE+"></Button>
+            <Text style = {[core.border,{ marginLeft: 'auto', marginTop: 'auto' }]}>3h left</Text>
+          </View> }
+        </TouchableOpacity>
       </View>
     )
   }
@@ -47,4 +51,4 @@ const style = StyleSheet.create({
   }
 })
 
-export default TaskCell
+export default withNavigation(TaskCell)
