@@ -7,14 +7,14 @@ import core from '../assets/styles/core'
 class TaskCell extends React.Component {
   constructor() {
     super()
-    console.log('TaskCell')
+    console.log('TaskCella')
     this.state = {
       expand: null
     }
   }
 
   componentDidMount() {
-    this.setState({ expand: this.props.expand ? true : false})
+    this.setState({ expand: this.props.index == 0 ? true : false})
   }
 
   render() {

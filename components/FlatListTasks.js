@@ -7,7 +7,7 @@ import core from '../assets/styles/core'
 class FlatListTasks extends React.Component {
   constructor(props) {
     super(props)
-    console.log('FlatList', this.props.tasks)
+    console.log('FlatLista', this.props.tasks)
   }
 
   render() {
@@ -16,7 +16,7 @@ class FlatListTasks extends React.Component {
         <FlatList
           data = { this.props.tasks }
           keyExtractor = { item => 'task-'+item.id }
-          renderItem = {({ item }) => ( <TaskCell item = {item} expand = 'true'></TaskCell> ) } />
+          renderItem = {({ item, index }) => ( <TaskCell item = { item } index = { index }></TaskCell> ) } />
       </View>
     )
   }
