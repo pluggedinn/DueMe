@@ -20,7 +20,7 @@ export class Details extends Component {
     headerRight: (
       <TouchableOpacity
         style = {{ marginRight: 21 }}
-        onPress = {() => navigation.push('EditNewTaskScreen', navigation.getParam('taskData', null)) }>
+        onPress = {() => navigation.push('EditNewTaskScreen', { taskData: navigation.getParam('taskData', null) }) }>
         <SvgUri
           width = '25'
           height = '25'

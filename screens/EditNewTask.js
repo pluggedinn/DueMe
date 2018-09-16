@@ -30,7 +30,7 @@ const Task = t.struct({
 
 class EditNewTask extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.getParam('title', 'New task'),
+    title: navigation.getParam('taskData', null) ? navigation.getParam('taskData', null).title : 'New Task',
     headerLeft: (
       <TouchableOpacity
         style = {{ marginLeft: 16 }}
@@ -57,6 +57,9 @@ class EditNewTask extends React.Component {
     console.log("New taske")
     this.formRef = React.createRef()
   }
+  componentDidMount() {
+    this.props.navigation.setParams({ handleSave: this.saveForm.bind(this) })
+  }
 
   saveForm() {
     let task = this.formRef.current.getValue()
@@ -64,13 +67,9 @@ class EditNewTask extends React.Component {
     this.props.navigation.goBack()
   }
 
-  componentDidMount() {
-    this.props.navigation.setParams({ handleSave: this.saveForm.bind(this) })
-  }
-
   render() {
     const taskData = this.props.navigation.getParam('taskData', null)
-
+    console.log(taskData)
     return (
       <KeyboardAwareScrollView>
         <View style = { styles.container } >
@@ -97,7 +96,6 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return { wholeState: state }
 }
-
 const mapDispatchToProps = (dispatch) => {
   return {
     addTask: task => {
