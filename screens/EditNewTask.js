@@ -56,9 +56,13 @@ class EditNewTask extends React.Component {
     super()
     console.log("New taske")
     this.formRef = React.createRef()
+    this.state = { formattedData: null }
   }
   componentDidMount() {
     this.props.navigation.setParams({ handleSave: this.saveForm.bind(this) })
+    var loadedData = this.props.navigation.getParam('taskData',null)
+    if (loadedData) this.setState({ formattedData: Object.assign({}, loadedData, { due: new Date(loadedData.due) })})
+    console.log(this.state.formattedData)
   }
 
   saveForm() {
@@ -77,7 +81,7 @@ class EditNewTask extends React.Component {
             type = { Task }
             options = { options }
             ref = { this.formRef }
-            value = { taskData } />
+            value = { this.state.formattedData } />
         </View>
       </KeyboardAwareScrollView>
     )
