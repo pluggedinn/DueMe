@@ -77,7 +77,7 @@ export class Details extends Component {
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Priority</Text>
-          <Text>{ this.props.navigation.taskData.priority }</Text>
+          <Text>{ this.state.data.priority }</Text>
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Due date</Text>
