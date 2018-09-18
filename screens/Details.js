@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
 import core from '../assets/styles/core'
 
@@ -28,6 +28,12 @@ export class Details extends Component {
       </TouchableOpacity>
     )
   })
+
+  constructor(props) {
+    super(props)
+    this.state = { data: props.navigation.getParam('taskData', null) }
+    console.log('Details')
+  }
 
   render() {
     return (
@@ -59,9 +65,19 @@ export class Details extends Component {
             source = { require('../assets/icons/delete.svg') } />
           <Text>Delete task</Text>
         </TouchableOpacity>
+        <Text style = { [core.row, styles.title] }>Description</Text>
+        <Text style = { core.row }>
+          { this.state.data.description ? this.state.data.description : 'N/A' }
+        </Text>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  title: {
+    fontWeight: 'bold'
+  }
+})
 
 export default Details

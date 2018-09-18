@@ -29,8 +29,8 @@ class TaskCell extends React.Component {
             <Button title = "A" onPress = {() => { this.setState({expand : !this.state.expand}) } }></Button>
           </View>
           { this.state.expand && <View style = { style.cardRow }>
-            <Button title = "DONE" onPress = {(null)}></Button>
-            <Button title = "ADVANCE+" onPress = {(null)}></Button>
+            <Button title = "DONE" onPress = {() => (null)}></Button>
+            <Button title = "ADVANCE+" onPress = {() => (null)}></Button>
             <Text style = {[core.border,{ marginLeft: 'auto', marginTop: 'auto' }]}>3h left</Text>
           </View> }
         </TouchableOpacity>
