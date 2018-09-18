@@ -1,5 +1,5 @@
 export const ADD_TASK = 'ADD_TASK'
-export const EDIT_TASK_DETAILS = 'EDIT_TASK_DETAILS'
+export const EDIT_TASK = 'EDIT_TASK'
 export const ADD_TASK_HOURS = 'ADD_TASK_HOURS'
 export const COMPLETE_TASK = 'COMPLETE_TASK'
 export const DELETE_TASK = 'DELETE_TASK'
@@ -17,7 +17,7 @@ export const Priorities = {
   HIGH: 'HIGH'
 }
 
-let nextTaskId = 0
+let nextTaskId = 2
 export function addTask (data) {
   return {
     type: ADD_TASK,
@@ -32,7 +32,7 @@ export function addTask (data) {
 
 export function editTask (taskid, data) {
   return {
-    type: EDIT_TASK_DETAILS,
+    type: EDIT_TASK,
     id: taskid,
     title: data.title,
     description: data.description,
