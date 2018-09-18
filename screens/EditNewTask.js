@@ -62,18 +62,16 @@ class EditNewTask extends React.Component {
     this.props.navigation.setParams({ handleSave: this.saveForm.bind(this) })
     var loadedData = this.props.navigation.getParam('taskData',null)
     if (loadedData) this.setState({ formattedData: Object.assign({}, loadedData, { due: new Date(loadedData.due) })})
-    console.log(this.state.formattedData)
   }
 
   saveForm() {
     let task = this.formRef.current.getValue()
-    this.props.navigation.getParam('taskData') ? this.props.editTask(task) : this.props.addTask(task)
+    console.log(task)
+    this.props.navigation.getParam('taskData') ? this.props.editTask(this.state.formattedData.id, task) : this.props.addTask(task)
     this.props.navigation.goBack()
   }
 
   render() {
-    const taskData = this.props.navigation.getParam('taskData', null)
-    console.log(taskData)
     return (
       <KeyboardAwareScrollView>
         <View style = { styles.container } >
@@ -105,8 +103,8 @@ const mapDispatchToProps = (dispatch) => {
     addTask: task => {
       dispatch(addTask(task))
     },
-    editTask: task => {
-      dispatch(editTask(task))
+    editTask: (id, task) => {
+      dispatch(editTask(id, task))
     }
   }
 }

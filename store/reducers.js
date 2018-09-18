@@ -9,7 +9,7 @@ const initialState = {
   tasks: [{
     id: 0,
     title: 'Chiamare DMV',
-    due: '2018-09-20T06:00:00.000Z',
+    due: new Date,
     estimate: 45,
     priority: 'HIGH',
     description: null
@@ -17,11 +17,12 @@ const initialState = {
   {
     id: 1,
     title: 'Scrivere a Jensen',
-    due: '2018-09-20T06:00:00.000Z',
+    due: new Date,
     estimate: 0.5,
     priority: 'MEDIUM',
     description: null
-  }]
+  }],
+
 }
 
 function rootReducer(state = initialState, action) {

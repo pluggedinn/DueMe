@@ -31,6 +31,7 @@ export function addTask (data) {
 }
 
 export function editTask (taskid, data) {
+  console.log(data)
   return {
     type: EDIT_TASK,
     id: taskid,
@@ -38,7 +39,7 @@ export function editTask (taskid, data) {
     description: data.description,
     due: data.due,
     priority: data.priority,
-    estimate: data.hours
+    estimate: data.estimate
   }
 }
 

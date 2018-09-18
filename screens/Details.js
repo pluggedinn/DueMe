@@ -77,11 +77,11 @@ export class Details extends Component {
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Priority</Text>
-          <Text>{ this.state.data.priority }</Text>
+          <Text>{ this.props.navigation.taskData.priority }</Text>
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Due date</Text>
-          <Text>{ this.state.data.due }</Text>
+          <Text>{ this.state.data.due.toString() }</Text>
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Estimate</Text>
