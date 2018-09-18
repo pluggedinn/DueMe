@@ -26,7 +26,9 @@ export function addTask (data) {
     description: data.description,
     due: data.due,
     priority: data.priority,
-    estimate: data.estimate
+    estimate: data.estimate,
+    progress: 0,
+    completed: false
   }
 }
 
@@ -39,7 +41,9 @@ export function editTask (taskid, data) {
     description: data.description,
     due: data.due,
     priority: data.priority,
-    estimate: data.estimate
+    estimate: data.estimate,
+    progress: data.progress,
+    completed: data.completed
   }
 }
 

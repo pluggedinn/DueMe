@@ -54,7 +54,7 @@ class EditNewTask extends React.Component {
 
   constructor() {
     super()
-    console.log("New taske")
+    console.log("New task")
     this.formRef = React.createRef()
     this.state = { formattedData: null }
   }
