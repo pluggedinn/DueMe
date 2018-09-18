@@ -32,7 +32,7 @@ export class Details extends Component {
   constructor(props) {
     super(props)
     this.state = { data: props.navigation.getParam('taskData', null) }
-    console.log('Details')
+    console.log('Detailss')
   }
 
   render() {
@@ -69,6 +69,24 @@ export class Details extends Component {
         <Text style = { core.row }>
           { this.state.data.description ? this.state.data.description : 'N/A' }
         </Text>
+        <View style = { [core.row, { justifyContent: 'space-between' }] }>
+          <Text style = { styles.title }>Current Rank in List</Text>
+        </View>
+        <View style = { [core.row, { justifyContent: 'space-between' }] }>
+          <Text style = { styles.title }>Current Hours Done</Text>
+        </View>
+        <View style = { [core.row, { justifyContent: 'space-between' }] }>
+          <Text style = { styles.title }>Priority</Text>
+          <Text>{ this.state.data.priority }</Text>
+        </View>
+        <View style = { [core.row, { justifyContent: 'space-between' }] }>
+          <Text style = { styles.title }>Due date</Text>
+          <Text>{ this.state.data.due }</Text>
+        </View>
+        <View style = { [core.row, { justifyContent: 'space-between' }] }>
+          <Text style = { styles.title }>Estimate</Text>
+          <Text>{ this.state.data.estimate } hours</Text>
+        </View>
       </View>
     )
   }
