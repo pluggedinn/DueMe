@@ -7,7 +7,7 @@ import core from '../assets/styles/core'
 class FlatListTasks extends React.Component {
   constructor(props) {
     super(props)
-    console.log('FlatLista', this.props.tasks)
+    console.log('FlatLista')
   }
 
   render() {

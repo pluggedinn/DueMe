@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux"
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
 import core from '../assets/styles/core'
@@ -6,7 +7,7 @@ import core from '../assets/styles/core'
 
 export class Details extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.getParam('taskData', null) ? navigation.getParam('taskData', null).title : null,
+    title: navigation.state.params.taskData.title,
     headerLeft: (
       <TouchableOpacity
         style = {{ marginLeft: 16 }}
@@ -31,8 +32,11 @@ export class Details extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { data: props.navigation.getParam('taskData', null) }
-    console.log('Detailss')
+    console.log('Details')
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams({ taskData: this.props.task })
   }
 
   render() {
@@ -67,25 +71,26 @@ export class Details extends Component {
         </TouchableOpacity>
         <Text style = { [core.row, styles.title] }>Description</Text>
         <Text style = { core.row }>
-          { this.state.data.description ? this.state.data.description : 'N/A' }
+          { this.props.task.description ? this.props.task.description : 'N/A' }
         </Text>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Current Rank in List</Text>
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Current Hours Done</Text>
+          <Text>{ this.props.task.progress } hours</Text>
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Priority</Text>
-          <Text>{ this.state.data.priority }</Text>
+          <Text>{ this.props.task.priority }</Text>
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Due date</Text>
-          <Text>{ this.state.data.due.toString() }</Text>
+          <Text>{ this.props.task.due.toString() }</Text>
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Estimate</Text>
-          <Text>{ this.state.data.estimate } hours</Text>
+          <Text>{ this.props.task.estimate } hours</Text>
         </View>
       </View>
     )
@@ -98,4 +103,11 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Details
+const mapStateToProps = (state, componentProps) => {
+  let id = componentProps.navigation.getParam('taskId', 0)
+  return {
+    task: state.tasks.filter(t => t.id === id)[0]
+  }
+}
+
+export default connect(mapStateToProps)(Details)
