@@ -6,33 +6,36 @@ import core from '../assets/styles/core'
 
 
 export class Details extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.taskData.title,
-    headerLeft: (
-      <TouchableOpacity
-        style = {{ marginLeft: 16 }}
-        onPress = {() => navigation.goBack() }>
-        <SvgUri
-          width = '25'
-          height = '25'
-          source = { require('../assets/icons/clear.svg') } />
-      </TouchableOpacity>
-    ),
-    headerRight: (
-      <TouchableOpacity
-        style = {{ marginRight: 21 }}
-        onPress = {() => navigation.push('EditNewTaskScreen', { taskData: navigation.getParam('taskData', null) }) }>
-        <SvgUri
-          width = '25'
-          height = '25'
-          source = { require('../assets/icons/edit.svg') } />
-      </TouchableOpacity>
-    )
-  })
+  static navigationOptions = ({ navigation }) => {
+    console.log(navigation.state.params.taskData)
+    return ({
+      title: 'mario',
+      headerLeft: (
+        <TouchableOpacity
+          style = {{ marginLeft: 16 }}
+          onPress = {() => navigation.goBack() }>
+          <SvgUri
+            width = '25'
+            height = '25'
+            source = { require('../assets/icons/clear.svg') } />
+        </TouchableOpacity>
+      ),
+      headerRight: (
+        <TouchableOpacity
+          style = {{ marginRight: 21 }}
+          onPress = {() => navigation.push('EditNewTaskScreen', { taskData: navigation.state.params.taskData }) }>
+          <SvgUri
+            width = '25'
+            height = '25'
+            source = { require('../assets/icons/edit.svg') } />
+        </TouchableOpacity>
+      )
+    })
+  }
 
   constructor(props) {
     super(props)
-    console.log('Details')
+    console.log('Detailss')
   }
 
   componentDidMount() {
@@ -105,8 +108,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state, componentProps) => {
   let id = componentProps.navigation.getParam('taskId', 0)
+  var task = state.tasks.filter(t => t.id === id)[0]
   return {
-    task: state.tasks.filter(t => t.id === id)[0]
+    task
   }
 }
 
