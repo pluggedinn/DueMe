@@ -7,7 +7,7 @@ import core from '../assets/styles/core'
 class FlatListTasks extends React.Component {
   constructor(props) {
     super(props)
-    console.log('FlatLista')
+    console.log('FlatList')
   }
 
   render() {
@@ -23,8 +23,10 @@ class FlatListTasks extends React.Component {
 }
 
 const mapStateToProps = state => {
+  
+
   return {
-    tasks: state.tasks
+    tasks: state.tasks,
   }
 }
 
