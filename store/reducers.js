@@ -4,25 +4,30 @@ import { ADD_TASK,
         SET_FILTER,
         Filters } from './actions'
 
+let debugTasks = [{
+  id: 0,
+  title: 'Chiamare DMV',
+  due: new Date,
+  estimate: 1,
+  priority: 'HIGH',
+  description: null,
+  progress: 0,
+  completed: false
+},
+{
+  id: 1,
+  title: 'Scrivere a Jensen',
+  due: new Date,
+  estimate: 2,
+  priority: 'MEDIUM',
+  description: null,
+  progress: 3,
+  completed: true
+}]
+
 const initialState = {
   filter: Filters.SHOW_ACTIVE,
-  tasks: [{
-    id: 0,
-    title: 'Chiamare DMV',
-    due: new Date,
-    estimate: 45,
-    priority: 'HIGH',
-    description: null
-  },
-  {
-    id: 1,
-    title: 'Scrivere a Jensen',
-    due: new Date,
-    estimate: 0.5,
-    priority: 'MEDIUM',
-    description: null
-  }],
-
+  tasks: debugTasks
 }
 
 function rootReducer(state = initialState, action) {

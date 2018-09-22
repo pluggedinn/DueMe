@@ -54,7 +54,7 @@ class EditNewTask extends React.Component {
 
   constructor() {
     super()
-    console.log("New taske")
+    console.log("New task")
     this.formRef = React.createRef()
     this.state = { formattedData: null }
   }
@@ -66,7 +66,6 @@ class EditNewTask extends React.Component {
 
   saveForm() {
     let task = this.formRef.current.getValue()
-    console.log(task)
     this.props.navigation.getParam('taskData') ? this.props.editTask(this.state.formattedData.id, task) : this.props.addTask(task)
     this.props.navigation.goBack()
   }

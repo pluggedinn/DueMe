@@ -19,10 +19,12 @@ class TaskCell extends React.Component {
   }
 
   render() {
+    let hoursLeft = this.props.item.estimate - this.props.item.progress
+
     return (
       <View style = { [core.border, style.card] }>
         <TouchableOpacity
-          onPress = {() => this.props.navigation.push('DetailsScreen', { taskData: this.props.item })}>
+          onPress = {() => this.props.navigation.push('DetailsScreen', { taskId: this.props.item.id })}>
           <View style = { style.cardRow }>
             <Text style = { core.border }>{ this.props.item.estimate }</Text>
             <Text style = { core.border }>{ this.props.item.title }</Text>
@@ -31,7 +33,7 @@ class TaskCell extends React.Component {
           { this.state.expand && <View style = { style.cardRow }>
             <Button title = "DONE" onPress = {() => (null)}></Button>
             <Button title = "ADVANCE+" onPress = {() => (null)}></Button>
-            <Text style = {[core.border,{ marginLeft: 'auto', marginTop: 'auto' }]}>3h left</Text>
+            <Text style = {[core.border,{ marginLeft: 'auto', marginTop: 'auto' }]}>{ hoursLeft }h left</Text>
           </View> }
         </TouchableOpacity>
       </View>
