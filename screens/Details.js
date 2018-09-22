@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'underscore'
 import { connect } from "react-redux"
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
@@ -7,9 +8,8 @@ import core from '../assets/styles/core'
 
 export class Details extends Component {
   static navigationOptions = ({ navigation }) => {
-    console.log(navigation.state.params.taskData)
     return ({
-      title: 'mario',
+      title: navigation.state.params.taskData ? navigation.state.params.taskData.title : '',
       headerLeft: (
         <TouchableOpacity
           style = {{ marginLeft: 16 }}
@@ -35,11 +35,16 @@ export class Details extends Component {
 
   constructor(props) {
     super(props)
-    console.log('Detailss')
+    console.log('Details')
   }
 
   componentDidMount() {
     this.props.navigation.setParams({ taskData: this.props.task })
+  }
+  componentDidUpdate(prevProps) {
+      if (!_.isEqual(this.props.task.title, prevProps.task.title)) {
+        this.props.navigation.setParams({ taskData: this.props.task })
+      }
   }
 
   render() {
