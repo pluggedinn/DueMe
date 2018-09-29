@@ -24,6 +24,8 @@ class FlatListTasks extends React.Component {
 }
 
 const mapStateToProps = state => {
+  
+
   return {
     tasks: getTasksCurrentFilter(state)
   }
