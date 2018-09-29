@@ -33,7 +33,6 @@ export function addTask (data) {
 }
 
 export function editTask (taskid, data) {
-  console.log(data)
   return {
     type: EDIT_TASK,
     id: taskid,
@@ -47,11 +46,11 @@ export function editTask (taskid, data) {
   }
 }
 
-export function addHoursTask (taskid, hoursup) {
+export function addHoursTask (taskid, amount) {
   return {
     type: ADD_TASK_HOURS,
     taskid,
-    hoursup
+    amount
   }
 }
 
