@@ -1,13 +1,14 @@
 import React from "react"
 import { View, FlatList } from "react-native"
 import { connect } from "react-redux"
+import { getTasksCurrentFilter } from '../store/selectors'
 import TaskCell from "./TaskCell"
 import core from '../assets/styles/core'
 
 class FlatListTasks extends React.Component {
   constructor(props) {
     super(props)
-    console.log('FlatLista')
+    console.log('FlatList')
   }
 
   render() {
@@ -24,7 +25,7 @@ class FlatListTasks extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    tasks: state.tasks
+    tasks: getTasksCurrentFilter(state)
   }
 }
 
