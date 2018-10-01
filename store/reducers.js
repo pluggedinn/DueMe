@@ -58,15 +58,19 @@ function rootReducer(state = initialState, action) {
         state.tasks.map(task => {
           if (task.id === action.taskid) {
             task.progress += action.amount
+            return task
           }
+          return task
         })
       })
     case COMPLETE_TASK:
       return Object.assign({}, state, { tasks:
-        state.tasks.maps(task => {
+        state.tasks.map(task => {
           if (task.id === action.taskid) {
             task.completed = true
+            return task
           }
+          return task
         })
       })
     case DELETE_TASK:
