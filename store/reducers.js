@@ -10,7 +10,7 @@ import { ADD_TASK,
 let debugTasks = [{
   id: 0,
   title: 'Chiamare DMV',
-  due: new Date,
+  due: new Date(2018, 10, 6, 12),
   estimate: 1,
   priority: 'HIGH',
   description: null,
@@ -20,7 +20,7 @@ let debugTasks = [{
 {
   id: 1,
   title: 'Scrivere a Jensen',
-  due: new Date,
+  due: new Date(2018, 11, 1, 13),
   estimate: 2,
   priority: 'MEDIUM',
   description: null,
