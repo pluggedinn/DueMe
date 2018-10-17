@@ -6,27 +6,7 @@ import { ADD_TASK,
         COMPLETE_TASK,
         DELETE_TASK,
         Filters } from './actions'
-
-let debugTasks = [{
-  id: 0,
-  title: 'Chiamare DMV',
-  due: new Date(2018, 10, 6, 12),
-  estimate: 1,
-  priority: 'HIGH',
-  description: null,
-  progress: 0,
-  completed: false
-},
-{
-  id: 1,
-  title: 'Scrivere a Jensen',
-  due: new Date(2018, 11, 1, 13),
-  estimate: 2,
-  priority: 'MEDIUM',
-  description: null,
-  progress: 3,
-  completed: true
-}]
+import debugTasks from './debugTasks'
 
 const initialState = {
   filter: Filters.SHOW_ACTIVE,

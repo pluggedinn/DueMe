@@ -14,7 +14,7 @@ class FilterBar extends React.Component {
     for (var item in Filters) {
       pickerItems.push(<Picker.Item key = { index++ } label = { Filters[item] }  value = { Filters[item] } ></Picker.Item>)
     }
-    console.log(this.props.wholeState)
+    // console.log(this.props.wholeState)
 
     return (
         <View style = { core.row }>

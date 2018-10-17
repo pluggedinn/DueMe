@@ -11,7 +11,8 @@ import { completeTask, addHoursTask } from '.././store/actions'
 class TaskCell extends React.Component {
   constructor() {
     super()
-    console.log('TaskCell')
+    // console.log('TaskCell')
+    
     this.state = {
       expand: null,
       hoursAmount: 0,
@@ -41,7 +42,7 @@ class TaskCell extends React.Component {
         <TouchableOpacity
           onPress = {() => this.props.navigation.push('DetailsScreen', { taskId: this.props.item.id })}>
           <View style = { style.cardRow }>
-            <Text style = { core.border }>{ this.props.item.estimate }</Text>
+            <Text style = { core.border }>{ this.props.item.id }</Text>
             <Text style = { core.border }>{ this.props.item.title }</Text>
             <Button title = "A" onPress = {() => { this.setState({expand : !this.state.expand}) } }></Button>
           </View>
