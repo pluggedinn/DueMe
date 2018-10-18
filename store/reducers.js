@@ -37,7 +37,8 @@ function rootReducer(state = initialState, action) {
       return Object.assign({}, state, { tasks:
         state.tasks.map(task => {
           if (task.id === action.taskid) {
-            task.progress += action.amount
+            task.progress += parseInt(action.amount)
+            if (task.progress >= task.estimate) { task.completed = true }
             return task
           }
           return task

@@ -12,7 +12,7 @@ class TaskCell extends React.Component {
   constructor() {
     super()
     // console.log('TaskCell')
-    
+
     this.state = {
       expand: null,
       hoursAmount: 0,
@@ -44,7 +44,7 @@ class TaskCell extends React.Component {
           <View style = { style.cardRow }>
             <Text style = { core.border }>{ this.props.item.id }</Text>
             <Text style = { core.border }>{ this.props.item.title }</Text>
-            <Button title = "A" onPress = {() => { this.setState({expand : !this.state.expand}) } }></Button>
+            <Button title = "A" onPress = {() => { this.setState({expand : !this.state.expand}) }}></Button>
           </View>
           { this.state.expand && <View style = { style.cardRow }>
             <Button title = "DONE" onPress = {() => this.props.setCompleted(this.props.item.id)}></Button>

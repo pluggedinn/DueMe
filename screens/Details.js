@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import Dialog from "react-native-dialog"
+import SvgUri from 'react-native-svg-uri'
 import _ from 'underscore'
 import { connect } from "react-redux"
+import { completeTask, addHoursTask, deleteTask } from '.././store/actions'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import SvgUri from 'react-native-svg-uri'
 import core from '../assets/styles/core'
-
 
 export class Details extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -35,24 +36,49 @@ export class Details extends Component {
 
   constructor(props) {
     super(props)
-    console.log('Details')
+    console.log('Detailss')
+    this.state = {
+      hoursAmount: 0,
+      dialog: false
+    }
   }
 
   componentDidMount() {
     this.props.navigation.setParams({ taskData: this.props.task })
   }
   componentDidUpdate(prevProps) {
+    if (this.props.task) {
       if (!_.isEqual(this.props.task.title, prevProps.task.title)) {
         this.props.navigation.setParams({ taskData: this.props.task })
       }
+    }
+  }
+
+  handleComplete() {
+    this.props.setCompleted(this.props.task.id)
+    this.props.navigation.goBack()
+  }
+  handleDelete() {
+    this.props.deleteTask(this.props.task.id)
+    this.props.navigation.goBack()
+  }
+  handleAdd() {
+    this.props.addHoursTask(this.props.task.id, this.state.hoursAmount)
+    this.props.navigation.goBack()
   }
 
   render() {
     return (
       <View style = { core.columnContainer }>
+        <Dialog.Container visible = { this.state.dialog }>
+          <Dialog.Title>How many hours did you do?</Dialog.Title>
+          <Dialog.Input onChangeText = {(text) => this.setState({ hoursAmount: text })} />
+          <Dialog.Button label = "Nevermind" onPress = {() => this.setState({ dialog: false, hoursAmount: 0})} />
+          <Dialog.Button label = "Add" onPress = {() => this.handleAdd()}/>
+        </Dialog.Container>
         <TouchableOpacity
           style = { core.row }
-          onPress = {(null) }>
+          onPress = {() => this.handleComplete()}>
           <SvgUri
             width = '25'
             height = '25'
@@ -61,7 +87,7 @@ export class Details extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style = { core.row }
-          onPress = {(null)}>
+          onPress = {() => { this.setState({dialog : !this.state.dialog}) }}>
           <SvgUri
             width = '25'
             height = '25'
@@ -70,7 +96,7 @@ export class Details extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style = { core.row }
-          onPress = {(null)}>
+          onPress = {() => this.handleDelete()}>
           <SvgUri
             width = '25'
             height = '25'
@@ -79,26 +105,26 @@ export class Details extends Component {
         </TouchableOpacity>
         <Text style = { [core.row, styles.title] }>Description</Text>
         <Text style = { core.row }>
-          { this.props.task.description ? this.props.task.description : 'N/A' }
+          { this.props.task ? this.props.task.description : 'N/A' }
         </Text>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Current Rank in List</Text>
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Current Hours Done</Text>
-          <Text>{ this.props.task.progress } hours</Text>
+          <Text>{ this.props.task ? this.props.task.progress : '' } hours</Text>
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Priority</Text>
-          <Text>{ this.props.task.priority }</Text>
+          <Text>{ this.props.task ? this.props.task.priority : '' }</Text>
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Due date</Text>
-          <Text>{ this.props.task.due.toString() }</Text>
+          <Text>{ this.props.task ? this.props.task.due.toString() : '' }</Text>
         </View>
         <View style = { [core.row, { justifyContent: 'space-between' }] }>
           <Text style = { styles.title }>Estimate</Text>
-          <Text>{ this.props.task.estimate } hours</Text>
+          <Text>{ this.props.task ? this.props.task.estimate : '' } hours</Text>
         </View>
       </View>
     )
@@ -118,5 +144,18 @@ const mapStateToProps = (state, componentProps) => {
     task
   }
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+      setCompleted: (taskid) => {
+        dispatch(completeTask(taskid))
+      },
+      addHoursTask: (taskid, amount) => {
+        dispatch(addHoursTask(taskid, amount))
+      },
+      deleteTask: (taskid) => {
+        dispatch(deleteTask(taskid))
+      }
+    }
+}
 
-export default connect(mapStateToProps)(Details)
+export default connect(mapStateToProps, mapDispatchToProps)(Details)
