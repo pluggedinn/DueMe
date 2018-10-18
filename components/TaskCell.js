@@ -5,13 +5,14 @@ import { connect } from "react-redux"
 import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native"
 import core from '../assets/styles/core'
 import { completeTask, addHoursTask } from '.././store/actions'
+import { percentProgress } from '.././store/selectors'
 
 // props: expand: expands item showing buttons | boolean
 //        item: data that contains all about the task | Object
 class TaskCell extends React.Component {
   constructor() {
     super()
-    // console.log('TaskCell')
+    console.log('TaskCella')
 
     this.state = {
       expand: null,
@@ -30,9 +31,10 @@ class TaskCell extends React.Component {
 
   render() {
     let hoursLeft = this.props.item.estimate - this.props.item.progress
+    let progress = percentProgress(this.props.item)
 
     return (
-      <View style = { [core.border, style.card] }>
+      <View style = { style.card }>
         <Dialog.Container visible = { this.state.dialog }>
           <Dialog.Title>How many hours did you do?</Dialog.Title>
           <Dialog.Input onChangeText = {(text) => this.setState({ hoursAmount: text })} />
@@ -52,6 +54,9 @@ class TaskCell extends React.Component {
             <Text style = {[core.border,{ marginLeft: 'auto', marginTop: 'auto' }]}>{ hoursLeft }h left</Text>
           </View> }
         </TouchableOpacity>
+        <View style = { [style.progressBar] }>
+          <View style = {{ flex: progress, backgroundColor: 'green' }}></View>
+        </View>
       </View>
     )
   }
@@ -59,13 +64,21 @@ class TaskCell extends React.Component {
 
 const style = StyleSheet.create({
   card: {
-    marginBottom: 10
+    marginBottom: 10,
+    backgroundColor: 'white',
+    borderRadius: 4,
+    padding: 4
   },
   cardRow: {
     flex: 1,
     flexDirection: 'row',
     paddingRight: 16,
     paddingLeft: 16
+  },
+  progressBar: {
+    flexDirection: 'row',
+    height: 2,
+    backgroundColor: 'red'
   }
 })
 const mapDispatchToProps = (dispatch) => {

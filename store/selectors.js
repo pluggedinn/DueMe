@@ -14,7 +14,7 @@ export function getTasksCurrentFilter (state) {
   })
 }
 
-function percentProgress (task) {
+export function percentProgress (task) {
   return 1 - ((task.estimate - task.progress) / task.estimate)
 }
 function compareTimeAsc (a, b) {
