@@ -1,18 +1,20 @@
 import React from "react"
 import { withNavigation } from 'react-navigation'
 import Dialog from "react-native-dialog"
+import SvgUri from 'react-native-svg-uri'
 import { connect } from "react-redux"
 import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native"
 import core from '../assets/styles/core'
 import { completeTask, addHoursTask } from '.././store/actions'
 import { percentProgress } from '.././store/selectors'
 
-// props: expand: expands item showing buttons | boolean
-//        item: data that contains all about the task | Object
+// props:
+// - index | Integer: the priority number
+// - item | Object: data that contains all about the task 
 class TaskCell extends React.Component {
   constructor() {
     super()
-    console.log('TaskCella')
+    console.log('TaskCell')
 
     this.state = {
       expand: null,
@@ -30,32 +32,39 @@ class TaskCell extends React.Component {
   }
 
   render() {
-    let hoursLeft = this.props.item.estimate - this.props.item.progress
+    let hoursLeft = (this.props.item.estimate - this.props.item.progress).toFixed(1)
     let progress = percentProgress(this.props.item)
 
     return (
-      <View style = { style.card }>
-        <Dialog.Container visible = { this.state.dialog }>
+      <View style={ style.card }>
+        <Dialog.Container visible={ this.state.dialog }>
           <Dialog.Title>How many hours did you do?</Dialog.Title>
-          <Dialog.Input onChangeText = {(text) => this.setState({ hoursAmount: text })} />
-          <Dialog.Button label = "Nevermind" onPress = {() => this.setState({ dialog: false, hoursAmount: 0})} />
-          <Dialog.Button label = "Add" onPress = {() => this.handleAdd()}/>
+          <Dialog.Input onChangeText={(text) => this.setState({ hoursAmount: text })} />
+          <Dialog.Button label="Nevermind" onPress={() => this.setState({ dialog: false, hoursAmount: 0})} />
+          <Dialog.Button label="Add" onPress={() => this.handleAdd()}/>
         </Dialog.Container>
         <TouchableOpacity
-          onPress = {() => this.props.navigation.push('DetailsScreen', { taskId: this.props.item.id })}>
-          <View style = { style.cardRow }>
-            <Text style = { core.border }>{ this.props.item.id }</Text>
-            <Text style = { core.border }>{ this.props.item.title }</Text>
-            <Button title = "A" onPress = {() => { this.setState({expand : !this.state.expand}) }}></Button>
+          onPress={() => this.props.navigation.push('DetailsScreen', { taskId: this.props.item.id })}>
+          <View style={ style.cardRow }>
+            <Text style={ style.priorityNumber }>#{ this.props.index + 1 }</Text>
+            <Text style={ style.title }>{ this.props.item.title }</Text>
+            <TouchableOpacity onPress={() => { this.setState({expand : !this.state.expand}) }}
+              style={{ marginLeft: 'auto' }}>
+              <SvgUri width='25' height='25' source={ require('.././assets/icons/caret_down.svg') }/>
+            </TouchableOpacity>
           </View>
-          { this.state.expand && <View style = { style.cardRow }>
-            <Button title = "DONE" onPress = {() => this.props.setCompleted(this.props.item.id)}></Button>
-            <Button title = "ADVANCE+" onPress = {() => this.setState({ dialog: true})}></Button>
-            <Text style = {[core.border,{ marginLeft: 'auto', marginTop: 'auto' }]}>{ hoursLeft }h left</Text>
+          { this.state.expand && <View style={ style.cardRow }>
+            <TouchableOpacity onPress={() => this.props.setCompleted(this.props.item.id)}>
+              <Text style={ style.doneBtn }>DONE</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.setState({ dialog: true})}>
+              <Text style={ style.advanceBtn }>ADVANCE+</Text>
+            </TouchableOpacity>
+            <Text style={ style.timeLeft }>{ hoursLeft > 1 ? hoursLeft + ' hs left' : hoursLeft + ' h left' }</Text>
           </View> }
         </TouchableOpacity>
-        <View style = { [style.progressBar] }>
-          <View style = {{ flex: progress, backgroundColor: 'green' }}></View>
+        <View style={ [style.progressBar] }>
+          <View style={{ flex: progress, backgroundColor: 'green' }}></View>
         </View>
       </View>
     )
@@ -64,21 +73,50 @@ class TaskCell extends React.Component {
 
 const style = StyleSheet.create({
   card: {
-    marginBottom: 10,
+    marginBottom: 13,
     backgroundColor: 'white',
-    borderRadius: 4,
-    padding: 4
+    borderRadius: 2,
+    shadowOffset: {width: 0, height: 13}, 
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
   },
   cardRow: {
     flex: 1,
     flexDirection: 'row',
+    paddingTop: 14,
+    paddingBottom: 14,
     paddingRight: 16,
     paddingLeft: 16
   },
   progressBar: {
     flexDirection: 'row',
-    height: 2,
-    backgroundColor: 'red'
+    height: 2.5,
+    backgroundColor: 'red',
+    borderRadius: 4
+  },
+  timeLeft: {
+    fontSize: 23,
+    marginLeft: 'auto',
+    opacity: 0.87
+  },
+  title: {
+    fontSize: 22
+  },
+  priorityNumber: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    paddingRight: 18
+  },
+  doneBtn: {
+    color: '#09AF00',
+    paddingTop: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
+    paddingLeft: 0
+  },
+  advanceBtn: {
+    color: '#0D47A1',
+    padding: 10
   }
 })
 const mapDispatchToProps = (dispatch) => {

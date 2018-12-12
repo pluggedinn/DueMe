@@ -14,13 +14,12 @@ class FilterBar extends React.Component {
     for (var item in Filters) {
       pickerItems.push(<Picker.Item key = { index++ } label = { Filters[item] }  value = { Filters[item] } ></Picker.Item>)
     }
-    // console.log(this.props.wholeState)
 
     return (
-        <View style = { core.row }>
+        <View style = { [core.row, {paddingTop: 10, paddingBottom: 10}] }>
           <View
             style = { core.marginRight } >
-            <SvgUri width="25" height="25" source={require('.././assets/icons/filter.svg')} />
+            <SvgUri width="25" height="25" source={require('.././assets/icons/sort.svg')} />
           </View>
           <Picker
             selectedValue = { this.props.currentFilter }
