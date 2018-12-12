@@ -16,8 +16,12 @@ const RootStack = createStackNavigator(
   {
     initialRouteName: 'HomeScreen',
     navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#673AB7'
+      },
+      headerTintColor: 'white',
       headerTitleStyle: {
-        fontWeight: 'normal'
+        fontWeight: 'bold'
       }
     }
   }

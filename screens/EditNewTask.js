@@ -45,7 +45,7 @@ class EditNewTask extends React.Component {
       <TouchableOpacity
         style = {{ marginRight: 21 }}
         onPress = {() => navigation.state.params.handleSave() }>
-        <Text>
+        <Text style={{color: 'white'}}>
           SAVE
         </Text>
       </TouchableOpacity>
