@@ -16,7 +16,7 @@ class FilterBar extends React.Component {
     }
 
     return (
-        <View style = { [core.row, {paddingTop: 10, paddingBottom: 10}] }>
+        <View style = { [core.row, { paddingBottom: 20, marginLeft: 0 }] }>
           <View
             style = { core.marginRight } >
             <SvgUri width="25" height="25" source={require('.././assets/icons/sort.svg')} />

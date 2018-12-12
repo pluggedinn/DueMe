@@ -36,7 +36,7 @@ class TaskCell extends React.Component {
     let progress = percentProgress(this.props.item)
 
     return (
-      <View style={ style.card }>
+      <View elevation={3} style={ style.card }>
         <Dialog.Container visible={ this.state.dialog }>
           <Dialog.Title>How many hours did you do?</Dialog.Title>
           <Dialog.Input onChangeText={(text) => this.setState({ hoursAmount: text })} />
@@ -75,10 +75,7 @@ const style = StyleSheet.create({
   card: {
     marginBottom: 13,
     backgroundColor: 'white',
-    borderRadius: 2,
-    shadowOffset: {width: 0, height: 13}, 
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
+    borderRadius: 2
   },
   cardRow: {
     flex: 1,
