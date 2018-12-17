@@ -38,7 +38,7 @@ class EditNewTask extends React.Component {
         <SvgUri
           width = '25'
           height = '25'
-          source = { require('../assets/icons/clear.svg') } />
+          source = { require('../assets/icons/clear_white.svg') } />
       </TouchableOpacity>
     ),
     headerRight: (

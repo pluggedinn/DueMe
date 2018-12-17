@@ -16,7 +16,7 @@ export default class Home extends Component {
         <SvgUri
           width = '25'
           height = '25'
-          source = { require('.././assets/icons/add.svg') } />
+          source = { require('.././assets/icons/add_white.svg') } />
       </TouchableOpacity>
     )
   })

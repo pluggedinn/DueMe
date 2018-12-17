@@ -18,7 +18,7 @@ export class Details extends Component {
           <SvgUri
             width = '25'
             height = '25'
-            source = { require('../assets/icons/clear.svg') } />
+            source = { require('../assets/icons/clear_white.svg') } />
         </TouchableOpacity>
       ),
       headerRight: (
@@ -28,7 +28,7 @@ export class Details extends Component {
           <SvgUri
             width = '25'
             height = '25'
-            source = { require('../assets/icons/edit.svg') } />
+            source = { require('../assets/icons/edit_white.svg') } />
         </TouchableOpacity>
       )
     })
@@ -69,7 +69,7 @@ export class Details extends Component {
 
   render() {
     return (
-      <View style = { core.columnContainer }>
+      <View style = { [core.columnContainer, { marginTop: 14 }] }>
         <Dialog.Container visible = { this.state.dialog }>
           <Dialog.Title>How many hours did you do?</Dialog.Title>
           <Dialog.Input onChangeText = {(text) => this.setState({ hoursAmount: text })} />
@@ -82,8 +82,8 @@ export class Details extends Component {
           <SvgUri
             width = '25'
             height = '25'
-            source = { require('../assets/icons/done.svg') } />
-          <Text>Set done</Text>
+            source = { require('../assets/icons/done_green.svg') } />
+          <Text style={ [styles.action, {color: 'green'}] }>Set done</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style = { core.row }
@@ -91,8 +91,8 @@ export class Details extends Component {
           <SvgUri
             width = '25'
             height = '25'
-            source = { require('../assets/icons/add.svg') } />
-          <Text>Add hours</Text>
+            source = { require('../assets/icons/add_blue.svg') } />
+          <Text style={ [styles.action, {color: 'blue'}] }>Add hours</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style = { core.row }
@@ -100,8 +100,8 @@ export class Details extends Component {
           <SvgUri
             width = '25'
             height = '25'
-            source = { require('../assets/icons/delete.svg') } />
-          <Text>Delete task</Text>
+            source = { require('../assets/icons/clear_red.svg') } />
+          <Text style={ [styles.action, {color: 'red'}] }>Delete task</Text>
         </TouchableOpacity>
         <Text style = { [core.row, styles.title] }>Description</Text>
         <Text style = { core.row }>
@@ -133,7 +133,12 @@ export class Details extends Component {
 
 const styles = StyleSheet.create({
   title: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    paddingTop: 14
+  },
+  action: {
+    marginLeft: 32,
+    marginTop: 3
   }
 })
 
