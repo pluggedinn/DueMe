@@ -14,7 +14,7 @@ import { percentProgress } from '.././store/selectors'
 class TaskCell extends React.Component {
   constructor() {
     super()
-    console.log('TaskCell')
+    // console.log('TaskCell')
 
     this.state = {
       expand: null,

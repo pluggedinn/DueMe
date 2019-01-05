@@ -1,11 +1,16 @@
 import React from "react"
 import { View, FlatList } from "react-native"
 import { connect } from "react-redux"
-import { getTasksCurrentFilter, sortByPriorityDueProgress } from '../store/selectors'
+import { getTasksCurrentFilter, sortByPriorityDueProgress, filterTasksByPeriod } from '../store/selectors'
 import FilterBar from '../components/FilterBar'
 import TaskCell from "./TaskCell"
 import core from '../assets/styles/core'
 
+// props:
+// - period | String: defines how much time does the user have
+//    "1": 1 hour
+//    "3": 3 hours
+//    "day": whole day
 class FlatListTasks extends React.Component {
   constructor(props) {
     super(props)
@@ -26,9 +31,9 @@ class FlatListTasks extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    tasks: sortByPriorityDueProgress(getTasksCurrentFilter(state))
+    tasks: sortByPriorityDueProgress(filterTasksByPeriod(getTasksCurrentFilter(state), ownProps.period ? ownProps.period : ''))
   }
 }
 

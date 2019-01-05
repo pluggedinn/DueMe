@@ -14,6 +14,16 @@ export function getTasksCurrentFilter (state) {
   })
 }
 
+export function filterTasksByPeriod (tasks, period) {
+  console.log(typeof(period))
+  if (period.includes('day')) {
+    return tasks
+  }
+  return tasks.filter((task) => {
+    return (task.estimate - task.progress) <= period
+  })
+}
+
 export function percentProgress (task) {
   return 1 - ((task.estimate - task.progress) / task.estimate)
 }

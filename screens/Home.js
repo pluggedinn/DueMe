@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity, Text } from 'react-native'
 import FlatListTasks from '../components/FlatListTasks'
 import SvgUri from 'react-native-svg-uri'
 import styles from '../assets/styles/core'
@@ -29,8 +29,27 @@ export default class Home extends Component {
   render() {
     return (
       <View style = { styles.columnContainer }>
-        {/* <FilterBar></FilterBar> */}
-        <FlatListTasks></FlatListTasks>
+        <TouchableOpacity
+          style = {{ marginRight: 16 }}
+          onPress = { () => {
+            this.props.navigation.push('DisplayTasksScreen', { period: '1' })
+          }}>
+          <Text>less than 1 hour</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style = {{ marginRight: 16 }}
+          onPress = { () => {
+            this.props.navigation.push('DisplayTasksScreen', { period: '4' })
+          }}>
+          <Text>less than 4 hours</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style = {{ marginRight: 16 }}
+          onPress = { () => {
+            this.props.navigation.push('DisplayTasksScreen', { period: 'day' })
+          }}>
+          <Text>all day</Text>
+        </TouchableOpacity>
       </View>
     )
   }
